@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load cdn_helper %}
+
+{% block content %}
+
+	<div class="row">
+	<h2>upload a new logo image</h2>
+<form method="post" action="{{upload_url}}" enctype="multipart/form-data">
+{{ form.as_p }}
+<input type="submit" value="Submit">
+</form>
+</div>
+{% endblock content %}

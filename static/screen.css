@@ -1,0 +1,61 @@
+body{font-size:100%;}
+a{text-decoration:none;}
+a.editlink{color:gray;}
+table,tbody,tr,td{border-color:white;}
+#sidebar{margin-top:10px;}#sidebar div{margin-top:0px;margin-bottom:10px;clear:both;}
+#sidebar #share{height:2em;}
+#sidebar #links{margin-top:5px;margin-left:0px;margin-bottom:10px;}#sidebar #links li{list-style-type:none;}#sidebar #links li a{font-weight:bold;}
+#sidebar #links #addlink{font-size:smaller;}
+#events{margin-top:10px;}#events .comments{margin-top:10px;display:block;}
+#events #thisweek{margin-bottom:5px;}#events #thisweek .addthis_toolbox{margin-bottom:5px;}
+#events #thisweek h2{margin:2px 0px 0px -5px;font-size:.8em;float:left;width:80px;text-align:right;color:gray;font-weight:normal;}
+#events #thisweek h3{margin-top:15px;margin-bottom:15px;}
+#events #thisweek .vevent{font-size:1.0em;margin-left:90px;max-width:28em;}#events #thisweek .vevent .details{font-size:.7em;}
+#events .vevent{margin-left:20px;}
+#events .tags a{font-size:small;background-color:#EEE;color:black;text-decoration:none;}
+#events h3{display:inline;}
+#events h1{margin:10px 0px 10px 0px;padding:5px;border-bottom:1px dashed black;border-top:1px dashed black;}#events h1 a{color:black;text-decoration:none;}
+#subscribewith{margin-left:0px;}
+#tagsubscribe{float:right;}
+.addthis_toolbox{width:200px;}
+#disqus_thread{margin-top:30px;}
+#events .vevent abbr{border-bottom:none;}
+h1{margin:0px;}
+.jumptoform{display:inline;}
+#tagline{font-size:1.5em;margin-bottom:10px;}
+#events h2{margin-top:10px;}
+h3{margin:0px;}
+h1{clear:both;}
+h2{display:block;font-weight:bold;margin:20px 0px 0px 0px;}
+#messages{margin:5px 0px 0px 0px;}
+#messages li{list-style:none;background-color:#F5F1A9;width:20%;text-align:center;}
+#events .editing{display:none;}
+#account_tools{color:#000;float:none;padding:1px;padding-bottom:10px;}#account_tools a{font-size:small;background-color:#EEE;color:black;text-decoration:none;padding:2px;}
+#account_tools a.adminlink{border-bottom:1px solid red;}
+.go_green{color:green;}
+.go_red{color:red;}
+#actions{text-align:left;margin-left:160px;}
+.formcopy{margin-left:30px;padding:10px;}.formcopy h4{padding-top:10px;padding-bottom:5px;}
+.multiselect select{display:inline !important;}
+form.egform fieldset{border:none;position:relative;padding:20px 0 0;}form.egform fieldset .placeholder{color:#B4B4B4;}
+form.egform fieldset legend span{border-bottom:1px solid #fff;display:block;font-size:2.25em;line-height:1.1;margin:20px 0 30px 20px;padding-bottom:20px;position:absolute;width:560px;}
+form.egform fieldset div input{padding:6px 5px;width:288px;}
+form.egform fieldset div .multiselect select{padding:0 0 0 3px;width:auto;}
+form.egform fieldset div textarea{height:89px;padding:6px 5px;width:288px;}
+form.egform fieldset div input[type=file]{background:none;border:inherit;padding:0;}
+form.egform fieldset div input,form.egform fieldset div textarea,form.egform fieldset div select{border-width:1px;border-style:solid;border-color:#636d77 #a3b4c4 #c7d2de;color:#333;display:block;font-size:14px;font-family:Arial,Helvetica,sans-serif;line-height:1;margin:0;}
+form.egform fieldset div ul.tagEditor{margin-left:0px;}form.egform fieldset div ul.tagEditor li{-moz-border-radius:5px 5px 5px 5px;background-color:#EEEEFF;background-image:url("minus_small.png");background-position:right center;background-repeat:no-repeat;cursor:pointer;display:inline;list-style-type:none;margin:0 4px;padding:0 18px 0 6px;}
+form.egform fieldset div.field{margin:0 0 10px 160px;}
+form.egform fieldset div.field label{line-height:1.1;margin:5px 20px 0 -160px;width:140px;float:left;text-align:right;}
+form.egform fieldset div.field input,form.egform fieldset div textarea,form.egform fieldset div select{display:block;line-height:1;}
+form.egform fieldset abbr{color:#7b0101;font-size:20px;font-weight:bold;line-height:1;padding:0 1px;vertical-align:middle;}
+form.egform fieldset label abbr{display:block;font-size:23px;padding:0;position:absolute;top:10px;right:60px;width:16px;}
+form.egform fieldset input:focus,form.egform fieldset textarea:focus,form.egform fieldset select:focus{border-color:#636d77;}
+form.egform fieldset span.help{padding-top:5px;padding-bottom:5px;display:block;}
+div.row{min-width:800px;width:80%;margin-left:10%;}
+#location_details #map_canvas{height:350px;background-color:grey;display:block;}
+#footer{padding-top:25px;padding-bottom:25px;text-align:left;font-weight:bold;}
+#pagination{padding-top:30px;}
+#ui-datepicker-div{font-size:12px;}
+#featured_providers{margin-top:10px;}
+.openid{background-color:white;}.openid .providers li{display:none;list-style-type:none;width:auto;}

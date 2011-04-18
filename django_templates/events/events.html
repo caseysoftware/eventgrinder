@@ -1,0 +1,24 @@
+{% load humanize %}
+{% load event_tags %}
+
+{% for event in continuing %}
+ <div class="vevent hentry">
+	{% ifequal forloop.counter 1 %}
+	<h2>Continuing</h2>
+	{% endifequal %}
+{% include "events/one_event.html" %}
+{% ifequal user.userlevel 10 %}
+{% include "events/edit_form.html" %}
+{% endifequal %}
+</div>
+{% endfor %}
+
+{% for event in events_soon %}
+ <div class="vevent hentry">
+{% ifchanged event.local_start.date %}<h2>{{event.local_start.date|naturalday  }}</h2> {% endifchanged %}
+{% include "events/one_event.html" %}
+{% ifequal user.userlevel 10 %}
+{% include "events/edit_form.html" %}
+{% endifequal %}
+</div>
+{% endfor %}

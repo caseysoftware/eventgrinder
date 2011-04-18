@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+<h2>Recover your subscription to {{site.name}}</h2>
+<p>Enter your email below, and we'll re-send you the link to verify or manage your subscription.</p>
+</div>
+<div class="row">
+
+<form method="post">
+{{ form.as_p }}
+<input type="Submit" value="Submit"/>
+</form>
+</div>
+{% endblock %}

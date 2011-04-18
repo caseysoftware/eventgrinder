@@ -1,0 +1,17 @@
+<a href="{{ ical.source_link }}"> {{ ical.name }}</a>
+<div>iCal URL: {{ical.ical_href }}</div>
+<form method='POST' action={% url save-ical %}>
+	<input type="hidden" name="source_key" value="{{ical.key}}"/>
+	{{ ical.approval_form.tags.label }}: {{ ical.approval_form.tags }}<br/>
+	{{ ical.approval_form.trusted.label }}: {{ ical.approval_form.trusted }}
+	
+	{% ifequal ical.status 'approved' %}
+    	<input type="submit" name="state" value="remove"/><input type="submit" name="state" value="save"/>
+		<input type="submit" name="state" value="fetch now"/>
+	
+	{% else %}
+	
+	<input type="submit" name="state" value="approved"/><input type="submit" name="state" value="rejected"/>
+	
+	{% endifequal %}
+</form>

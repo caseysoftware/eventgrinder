@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% from 'form_macros.html' import form_field_td %}
+
+
+{% block content %}
+
+<form method="POST">
+<table>
+<tr> {{ form_field_td(form.name) }}</tr>
+<tr> {{ form_field_td(form.href) }}</tr>
+</table>
+<input type="submit" value="Submit this link!">
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,33 @@
+application: techevents
+version: newhomepage
+runtime: python
+api_version: 1
+
+handlers:
+
+
+- url: /static/([^/]*)/(.*)
+  static_files: static/\2
+  upload: static/(.*)
+  expiration: "24d"
+  
+- url: /calendars.*
+  script: main.py
+
+- url: /tasks.*
+  script: main.py
+  login: admin
+
+- url: /links/review
+  script: main.py
+  login: admin
+
+- url: /links.*
+  script: main.py
+  
+- url: /mapreduce(/.*)?
+  script: mapreduce_wrapper.py
+  login: admin
+
+- url: .*
+  script: django_app.py

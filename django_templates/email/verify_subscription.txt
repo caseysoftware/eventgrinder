@@ -1,0 +1,5 @@
+Thank you for signing up!  
+
+Please confirm your email address by clicking on the link below:
+
+{{confirmation_url}}

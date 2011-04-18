@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load cdn_helper %}
+{% load event_tags %}
+{%load humanize %}
+{% block headextra %}
+
+
+<script>
+$(function(){
+	$('.editing .details').hide()
+
+	$('.editing .details').each(function(){
+        var expose=$('<a href="">edit</a>');
+        var hide=$('<a href="">hide</a>');
+        var form = this;
+        hide.click(function(){
+            $(form).hide();
+            expose.show();
+            hide.hide();
+            return false;
+        })
+        expose.click(function(){
+            $(form).show();
+            hide.show();
+            expose.hide();
+            return false;
+        })
+        $(this).before(expose);
+        $(this).before(hide);
+        hide.hide()
+        
+    })
+
+})
+
+
+</script>
+
+
+{% endblock %}
+
+{% block subtitle %}Event Queue{% endblock %}
+
+{% block content %}
+
+<div class="row" id="pending_events">
+	<h1>Event Submissions</h1>
+	
+	<ul>
+		{% for event in pending_events_future %}
+         	
+		<li>{% ifchanged event.local_start.date %} {{event.local_start|naturalday}} {% endifchanged %}
+			
+			{% include "events/one_event.html" %}
+	
+		{% ifequal user.userlevel 10 %}
+		{% include "events/edit_form.html" %}
+		{% endifequal %}
+		
+		
+		</li>
+		{% empty %}
+	   No pending events! you should <a href="{% url add-event %}">add one</a>.
+		{% endfor %}
+	</ul>	
+	{% if user.is_editor and submitted_icals %}
+<a href="{% url manage-sources %}">there are pending souces</a><br/>
+{% endif %}
+{% if user.is_editor and has_pending_links %}
+<a href="/links/review">there are pending links</a><br/>
+{% endif %}
+
+	
+</div>
+
+
+
+{% endblock %}

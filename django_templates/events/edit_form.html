@@ -1,0 +1,28 @@
+<div class="tools">
+<form method="POST" action="{% url event-queue %}" class="editing">
+	<div class="details">
+	title:<input type="text" name="title" value="{{event.title}}" size=40/><br/>
+	link:<input type="text" name="link" value="{{event.link|default:""}}" size=40/><br/>
+	from:<input type="text" name="start" value="{{event.local_start|date:"m/d/Y h:i A" }}" size=20/>
+	 until <input type="text" name="end" value="{{event.local_end|date:"m/d/Y h:i A" }}" size=20/><br/>
+	cost: <input type="text" name="cost" value="{{event.cost|default:""}}" size=40/><br/>
+	</div>
+	<div class="approval">
+	<input type="hidden" name="tags" value=""/>
+	<input type="hidden" name="event_key" value="{{event.key}}">
+	<input type="hidden" name="return" value="{{request.path}}">	
+    <input type="Submit" name="button" value="Save">
+    {% ifequal event.status 'approved' %}
+    	<input type="Submit" name="button" value="Back to queue">  
+	{% endifequal %}
+	
+    {% ifequal event.status 'submitted' %}
+    	<input type="Submit" name="button" value="Approve">  
+	{% endifequal %}
+
+     or <input type="Submit" name="button" value="Reject"> 
+    <input type="hidden" name ="rejection-reason" value="hidden"/>
+
+	</div>
+</form>
+</div>

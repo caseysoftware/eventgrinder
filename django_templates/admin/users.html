@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load cdn_helper %}
+
+{% block headextra %}
+
+
+
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<h2>Users</h2>
+	{% if users %}
+	<form method="POST">
+	<ul>
+		{% for identity in users %}
+		<li>{{ identity.nickname }} <span class="promote-links">
+			Is a <select name="set-userlevel-{{identity.slug}}">
+				<option value="0" {% ifequal identity.userlevel 0 %} selected {% endifequal %}>user</option>
+				<option value="10" {% ifequal identity.userlevel 10 %} selected {% endifequal %}>editor</option>
+				</select>
+		</li>
+		
+		{% endfor %}
+		
+	</ul>
+	<input type="submit" value="Save changes">
+	</form>
+	
+	{% else %}
+
+<em>This site doesn't have any users yet!</em>
+
+	{% endif %}
+	</div>
+{% endblock content %}

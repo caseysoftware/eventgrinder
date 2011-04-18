@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+<form method="post">
+	<ul>
+{{ form.as_ul }}
+<input type="submit" value="Submit">
+	</ul>
+</form>
+</div>
+{% endblock content %}

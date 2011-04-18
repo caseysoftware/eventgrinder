@@ -1,0 +1,10 @@
+Priority:
+- add event by URL
+- Design/typography overhaul
+
+Annoyances:
+- imported descriptions should be available to editors, even if not included
+- Events should have a last_edited date
+- recurrence-expansion shouldn't create a fresh event every time
+- no navigation between weeks
+

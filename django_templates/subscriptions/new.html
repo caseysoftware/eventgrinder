@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+<h2>Enter your email below to subscribe to {{site.name}}</h2>
+<p>We'll send you a week-ful of events every Monday morning-- and nothing else.</p>
+</div>
+<div class="row">
+<form method="post">
+{{ form.as_p }}
+<input type="Submit" value="Submit"/>
+</form>
+</div>
+{% endblock %}

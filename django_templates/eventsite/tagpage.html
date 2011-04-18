@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load cdn_helper %}
+{% load humanize %}
+
+{% block headextra %}
+{% ifequal user.userlevel 10 %}
+	<script src="{% versioned "/static/editing.js" %}"></script>
+{% endifequal %}
+{% endblock %}
+{% block subtitle %} {{tag}} events{% endblock %}
+
+{% block opengraph %}
+<meta name="title" content="events tagged {{tag}} on{{ site.name }}" />
+<meta name="description" content="{{site.name}} is a calendar for {{site.audience}} " />
+<meta property="og:type" content="article" />
+{% endblock opengraph %}
+
+
+{% block content %}
+<div id="positioner">
+	
+	<div class="row">
+		<div class="cell position-0 width-12" id="events">
+			<a href="/">return to front page</a>
+		<h1> upcoming events tagged <em>{{ tag }}</em></h1>
+		<div id="utilities">
+			
+				<div id="tagsubscribe">subscribe to this tag with <a href="webcal://{{site.host}}/tag/{{tag}}/ical">ical</a></div>
+			
+				<!-- AddThis Button BEGIN -->
+				<script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+				<div class="addthis_toolbox addthis_default_style">
+				<a href="http://addthis.com/bookmark.php?v=250&amp;username=rosskarchner" class="addthis_button_compact">Share</a>
+				<span class="addthis_separator">|</span>
+				<a class="addthis_button_facebook"></a>
+				<a class="addthis_button_twitter"></a>
+				</div>
+				<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=rosskarchner"></script>
+				<!-- AddThis Button END -->
+	
+		</div>
+			{% for event in continuing %}
+			 
+				{% ifequal forloop.counter 1 %}
+				<h2>Continuing</h2>
+				{% endifequal %}
+			{% include "events/one_event.html" %}
+			{% ifequal user.userlevel 10 %}
+			{% include "events/edit_form.html" %}
+			{% endifequal %}
+		
+			{% endfor %}
+
+			{% for event in more_events %}
+			
+            {% ifchanged event.local_start.date %}    
+				<h2>{{event.local_start.date|naturalday  }}</h2> 
+            
+			{% endifchanged %}
+		    {% include "events/one_event.html" %}
+			{% ifequal user.userlevel 10 %}
+			{% include "events/edit_form.html" %}
+			{% endifequal %}
+		
+			{% endfor %}	
+
+
+	</div>
+		<div class="cell position-12 width-4" id="sidebar">
+			
+			{% include "eventsite/sidebar.html" %}
+			
+		</div>
+	
+</div>
+	
+
+</div>
+{% endblock %}

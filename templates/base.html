@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="en" class="no-js">
+
+<head class="html5reset-kitchensink-clean">
+
+	<meta charset="utf-8" />
+	
+	<title>{% block title %}Share Events{% endblock title %}</title>
+	
+	<meta name="description" content="The event sharing community" />
+	
+	<meta name="author" content="Ross M Karchner" />
+	<meta name="Copyright" content="Copyright Your Name Here 2010. All Rights Reserved." />
+
+	<meta name="DC.title" content="Share Events!" />
+	<meta name="DC.subject" content="share events, and follow calendars from your friends and local clubs and organizations" />
+	<meta name="DC.creator" content="Ross M Karchner, that's who" />
+	
+	<meta name="google-site-verification" content="" />
+	
+	<link rel="shortcut icon" href="/static/{{ app_version }}/img/favicon.png"/>
+	
+	<link rel="apple-touch-icon" href="/static/{{ app_version }}/img/custom_icon.png"/>
+
+	<link rel="stylesheet" href="/static/{{ app_version }}/css/main.css" />
+	
+	<link rel="stylesheet" href="/static/{{ app_version }}/css/_print/main.css" media="print" />
+		 
+	<!--[if IE]>
+	<link rel="stylesheet" href="/static/{{ app_version }}/css/patches/win-ie-all.css" />
+	<![endif]-->
+	<!--[if IE 7]>
+	<link rel="stylesheet" href="/static/{{ app_version }}/css/patches/win-ie7.css" />
+	<![endif]-->
+	<!--[if lt IE 7]>
+	<link rel="stylesheet" href="/static/{{ app_version }}/css/patches/win-ie-old.css" />
+	<![endif]-->
+	
+	<!--[if lt IE 8]>
+	<script src="http://ie7-js.googlecode.com/svn/version/2.0(beta3)/IE8.js"></script>
+	<![endif]-->
+	
+	<script src="/static/{{ app_version }}/js/modernizr-1.5.min.js"></script>
+	<!-- if you'd rather use HTML5 Shiv, it can be found here: http://html5shiv.googlecode.com -->
+	
+	<script src="/static/{{ app_version }}/js/functions.js"></script>
+	{% block layoutextra %}
+
+	{% endblock %}
+    {% block headextra %}
+
+	{% endblock %}
+</head>
+
+<body id="sharevents-com">
+	{% block body %}
+
+{% endblock body %}
+
+</body>
+</html>

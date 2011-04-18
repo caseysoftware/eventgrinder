@@ -1,0 +1,5 @@
+body{background-color:#DBDDEA;}
+body>header{margin:0px auto;width:75%;max-width:780px;display:block;}body>header h1{font-size:2em;font-weight:100;line-height:1em;}
+#wrapper{margin:0px auto;width:75%;max-width:780px;background-color:white;padding:10px;border-top-color:black;border-top-width:.5em;border-top-style:solid;}
+ol li{list-style:none;}
+footer{bottom:0;padding-bottom:5px;position:absolute;text-align:end;width:99%;}

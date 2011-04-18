@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load cdn_helper %}
+
+{% block headextra %}
+ <link rel="stylesheet" type="text/css" media="screen" href="{% versioned "/static/jQueryOpenIdPlugin/openid.css" %}" />
+
+<script type="text/javascript" src="{% versioned "/static/jQueryOpenIdPlugin/jquery.openid.js" %}"></script>
+<script type="text/javascript">  $(function() { $("form.openid:eq(0)").openid(); });</script>
+
+
+{% endblock %}
+
+{% block content %}
+<div class="row">
+<div class="cell position-0 width-16">	
+<h2> Sign in to {{site.name}} with your Google or Yahoo account</h2>
+<div id="featured_providers">
+<a href="{{ google_login_url }}"><img src="{% versioned "/static/google-login.png" %}" alt="Log in with Google"/></a>
+<a href="{{ yahoo_login_url }}"><img src="{% versioned "/static/yahoo-login.png" %}" alt="Log in with Yahoo"/></a>
+</div>
+
+
+<form class="openid" method="post" action=""> 
+  <div><ul class="providers"> 
+  <li class="openid" title="OpenID"><img src="{% versioned "/static/jQueryOpenIdPlugin/images/openidW.png" %}" alt="icon" /> 
+  <span><strong>http://{your-openid-url}</strong></span></li> 
+  <li class="direct" title="Google"> 
+		<img src="{% versioned "/static/jQueryOpenIdPlugin/images/googleW.png" %}" alt="icon" /><span>https://www.google.com/accounts/o8/id</span></li> 
+  <li class="direct" title="Yahoo"> 
+		<img src="{% versioned "/static/jQueryOpenIdPlugin/images/yahooW.png" %}" alt="icon" /><span>http://yahoo.com/</span></li> 
+  <li class="username" title="AOL screen name"> 
+		<img src="{% versioned "/static/jQueryOpenIdPlugin/images/aolW.png" %}" alt="icon" /><span>http://openid.aol.com/<strong>username</strong></span></li> 
+
+  <li class="username" title="Flickr user name"> 
+		<img src="{% versioned "/static/jQueryOpenIdPlugin/images/flickr.png" %}" alt="icon" /><span>http://flickr.com/<strong>username</strong>/</span></li> 
+
+  <li class="username" title="Wordpress blog name"> 
+		<img src="{% versioned "/static/jQueryOpenIdPlugin/images/wordpress.png" %}" alt="icon" /><span>http://<strong>username</strong>.wordpress.com</span></li> 
+  <li class="username" title="Blogger blog name"> 
+		<img src="{% versioned "/static/jQueryOpenIdPlugin/images/blogger.png" %}" alt="icon" /><span>http://<strong>username</strong>.blogspot.com/</span></li> 
+
+
+  <li class="username" title="Verisign user name"> 
+		<img src="{% versioned "/static/jQueryOpenIdPlugin/images/verisign.png" %}" alt="icon" /><span>http://<strong>username</strong>.pip.verisignlabs.com/</span></li> 
+  </ul></div> 
+  <fieldset> 
+  <label for="openid_username">Enter your <span>Provider user name</span></label> 
+  <div><span></span><input type="text" name="openid_username" /><span></span> 
+  <input type="submit" value="Login" /></div> 
+  </fieldset> 
+  <fieldset id="openid_entry"> 
+  <label for="openid_identifier">Or, enter any other <a class="openid_logo" href="http://openid.net">OpenID</a></label> 
+  <div><input type="text" name="openid_url"/> 
+  <input type="hidden" name="continue" value="{{dest}}"/>
+  <input type="submit" value="Login" /></div> 
+  </fieldset> 
+</form>
+</div>
+</div>
+
+
+<!--	<a href="{{ google_signin }}">Or, sign in with your Google Account</a> -->
+{% endblock %}

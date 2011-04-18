@@ -1,0 +1,84 @@
+{% load cdn_helper %}
+
+<!DOCTYPE html>
+<html>
+<HEAD>
+   <TITLE>{% block title %} {{ site.name }}
+   {% endblock %}</TITLE>
+
+
+	<script src="{% versioned "/static/jquery/js/jquery-1.4.2.min.js?" %}"></script>
+	<script src="{% versioned "/static/html5.js" %}"></script>
+	<script src="{% versioned "/static/modernizr-1.1.min.js" %}"></script>
+	<script src="{% versioned "/static/jquery.browser.min.js" %}"></script>
+	
+	
+ <link rel="stylesheet" href="{% versioned "/static/reset-fonts.css" %}"/> 
+	<link rel="stylesheet"  href="{% versioned "/static/base-min.css" %}"/>
+	<link rel="stylesheet" href="{% versioned "/static/decogrids-16.css" %}"/>  
+	<link rel="stylesheet" href="{% versioned "/static/screen.css" %}" media="screen"/>  
+
+
+
+
+ {% block headextra %}
+
+ {% endblock %}
+</HEAD>
+   <BODY id="eventgrinder">
+  <div class="row">
+	
+	<div id="account_tools">
+	
+	{% if user.confirmed_at %}
+	 <a href="{% url add-event %}">add an event</a>
+	 <a href="{% url account-edit %}">edit your profile</a>
+	 <a href="{% url event-queue %}">event queue</a>
+	 <a href="{{ logout }}">sign out</a>
+	{% else %}
+
+
+	
+
+	
+	 <a href="{% url add-event %}">sign in to add events</a>
+	
+	{% endif %}
+	<a href='{% url edit-site %}'>edit site details</a>
+	<a href='{% url logo-upload %}'>update logo</a>
+	<a href="{% url manage-users %}"> manage users</a>
+	</div>
+	
+	
+	
+	</div>
+    <div class="row"><h1>
+		<a href="{% url front-page %}">
+			{% if site.logo_asset_href %}
+			<img src="{% versioned site.logo_asset_href site.original_logo_version %}" alt="{{ site.name }}">
+			{% else %}
+			{{ site.name }}
+			{% endif %}
+			</a>
+	</h1></div>
+	
+{% if messages %}
+<div class="row">
+	<ul>
+{% for message in messages %}
+<li>{{message|safe}}</li>
+{% endfor %}
+</ul>
+</div>
+{% endif %}
+{% block content %}
+	
+{% endblock %}
+<div class="row" id="footer">
+	<div class="row">
+	<p> {{ site.name }} is made with <a href="http://eventgrinder.com/">EVENTGRINDER</a>.</p>
+	</div>
+</div>
+   </BODY>
+</HTML>
+

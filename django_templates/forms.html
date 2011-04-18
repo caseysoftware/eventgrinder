@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+<form method="post">
+
+<h1> Create profile</h1>
+<fieldset>
+    <dl>
+        <dt>{{initial_profile_form.nickname.label_tag}}</dt>
+        <dd>{{initial_profile_form.nickname}}<div>{{ initial_profile_form.nickname.help_text }} </div></dd>
+        <dt>{{initial_profile_form.email.label_tag}}</dt>
+        <dd>{{initial_profile_form.email}}
+            <div>{{ initial_profile_form.email.help_text }} </div>
+        </dd>
+    </dl>
+</fieldset>
+<input type="submit" value="Submit">
+</form>
+
+
+
+
+<h1> Edit Profile</h1>
+
+{{profile_form}}
+
+<h1>Submit an Event</h1>
+
+{{event_form}}
+
+
+{% endblock %}

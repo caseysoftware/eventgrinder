@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load cdn_helper %}
+
+
+{% block content %}
+<div class="row">
+	<div class="cell position-0 width-16">
+<h2>add an iCalendar</h2>
+
+
+	</div>
+</div>
+
+<form method="POST" class="egform">
+
+<div class="row">
+	<div class="cell position-0 width-8">
+	<fieldset>
+		<div class="field">{{form.name.label_tag}}
+		{{form.name}} {{form.name.help_text}}
+		{{form.name.errors}}	
+		</div>
+		<div class="field">{{form.link.label_tag}}
+		{{form.link}} <span class="help">{{form.link.help_text}}</span>
+		{{form.link.errors}}	
+		</div>
+		<div class="field">{{form.ical.label_tag}}
+		{{form.ical}} <span class="help">{{form.ical.help_text}}</span>
+		{{form.ical.errors}}	
+		</div>
+	
+	</fieldset>
+		<div style="text-align:right">	<input type="submit" value="Save"></div>
+
+	</div>
+	<div class="cell position-8 width-8">
+		<div class="formcopy">
+<p>iCalendar (or iCal) is a standard way for people and organizations to share and syndicate calendars. Submit an iCal URL to {{ site.name}}, and we will check it periodically for new events and updates. </p>
+
+<h3>Two Easy Ways to get an iCalendar for your group</h3>
+<h4><a href="http://www.meetup.com/create/">Using Meetup</a></h4>	
+<p>Once you've created a Meetup group, look on your calendar page for the line that says "Subscribe to a feed of this calendar". Right click "iCal" to copy the iCalendar URL</p>	
+<img src="{% versioned "/static/meetup-subscribe.png"%}"/>
+
+<h4><a href="http://upcoming.yahoo.com/add/group/">Using Upcoming</a></h4>
+<p>Create your group in upcoming, and go to the group homepage. Click the subscribe link to see all of the subscription options. Right click "Add to iCal calendar" to copy your iCalendar URL.</p>
+<img src="{% versioned "/static/upcoming-subscribe.png" %}">
+</div>
+	</div>
+
+</div>
+
+
+{% endblock %}

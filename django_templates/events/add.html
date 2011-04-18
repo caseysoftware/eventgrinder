@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load cdn_helper %}
+
+{% block subtitle %}Add an Event{% endblock %}
+
+{% block headextra %}
+
+<script src="{% versioned "/static/jquery/js/jquery-ui-1.8rc3.custom.min.js" %}"></script>
+
+<link rel="stylesheet" href="{% versioned "/static/jquery/css/smoothness/jquery-ui-1.8rc3.custom.css" %}"/>  
+<script src="{% versioned "/static/date.js" %}"></script>
+<script src="{% versioned "/static/jquery.NobleCount.min.js" %}"></script>
+<script src="{% versioned "/static/event-add.js" %}"></script>
+
+
+
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="cell position-0 width-16">
+<h2>add an event</h2>
+
+<p><strong>even better</strong>: <a href="{% url add-source %}">submit an iCalendar URL</a>, and we'll check it every day for new events. If your group uses Meetup, Upcoming, Eventful, or Google Calendar, you've got one!
+	</p>
+
+	</div>
+</div>
+
+
+
+<form method="POST" class="egform" novalidate>
+<div class="row">
+	<div class="cell position-0 width-8">
+	<fieldset>
+
+		<div class="field fakeplaceholderOK">{{form.title.label_tag}}
+		{{form.title}} {{form.title.help_text}}
+		{{form.title.errors}}	
+		</div>
+		<div class="field fakeplaceholderOK" id="link">{{form.link.label_tag}}
+		{{form.link}} <span class="help">{{form.link.help_text}}</span>
+		{{form.link.errors}}	
+		</div>
+
+		<div class="field" id="event_description">{{form.description.label_tag}}
+		{{form.description}}
+		<span id="description_charlimit">This description can be 250 characters long</span>
+		{{form.description.errors}}	
+		</div>
+
+
+		<div  class="field fakeplaceholderOK">
+		{{form.location.label_tag}}
+			{{form.location}} <span class="help">{{form.location.help_text}}</span>
+			{{form.location.errors}}	
+		</div>
+
+
+		<div class="field fakeplaceholderOK" id="start_date">{{form.start_date.label_tag}}
+		{{form.start_date}} <span class="help">{{form.start_date.help_text}}</span>
+		{{form.start_date.errors}}	
+		</div>
+		<div class="field" id="end_date">{{form.end_date.label_tag}}
+		{{form.end_date}} <span class="help">{{form.end_date.help_text}}</span>
+		{{form.end_date.errors}}	
+		</div>
+		<div class="multiselect field">{{form.start_time.label_tag}}
+		{{form.start_time}} <span class="help">{{form.start_time.help_text}}</span>
+				{{form.start_time.errors}}	
+		</div>
+		<div class="multiselect field">{{form.end_time.label_tag}}
+		{{form.end_time}} <span class="help">{{form.end_time.help_text}}</span>
+				{{form.end_time.errors}}	
+		</div>
+	</fieldset>
+	</div>
+	<div class="cell position-8 width-8">
+<fieldset>
+
+<div class="field">{{form.cost.label_tag}}
+	{{form.cost}} <span class="help">{{form.cost.help_text}}</span>
+	{{form.cost.errors}}	
+</div>
+
+</fieldset>
+
+
+	
+	
+	
+	</div>
+
+
+
+</div>
+
+
+
+<div class="row">
+	<div class="cell position-0 width-14">
+		<div id="actions">
+			<input type="submit" value="Submit Event">
+		</div>
+	</div>
+</div>
+</form>
+
+{% endblock %}

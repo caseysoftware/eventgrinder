@@ -1,0 +1,86 @@
+{% load humanize %}
+{% load cdn_helper %}
+<!doctype html>
+<head><meta charset=utf-8>
+<title>{{ site.name }} weekly newsletter for </title>
+
+<style>
+body {
+	font: small "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+h1{
+	font-size: medium;
+}
+
+a{
+	text-decoration: none;
+	color:blue;
+}
+
+table{
+	
+	margin-top:10px;
+}
+
+div{margin:10px;}
+
+</style>
+
+
+</head>
+<body>
+	
+		
+			{% if site.logo_asset_href %}
+			<img src="{{site.logo_asset_href }}" alt="{{ site.name }}">
+			{% else %}
+			{{ site.name }}
+			{% endif %}
+			
+			
+<h1> <a href="http://{{site.host}}{% url front-page %}">{{ site.name }} for the week of {{ start|date:"F j, Y"}}</a></h1>
+
+	<div id="tagline"><strong>{{site.name}}</strong> is a calendar for {{site.audience}}</div>
+
+
+			<div>Please consider forwarding this along to your friends and colleagues in the community. If you find it useful, they might too.</div>
+		
+				<div>Did we miss something? <a href="http://{{site.host}}/events/add">You can still add events</a>!</div>
+				<div>
+				
+			<table>
+			{% for event in continuing %}
+			    <tr>
+				{% ifequal forloop.counter 1 %}
+				<td>Continuing</td>
+				{% else %}
+				<td>&nbsp;</td>
+				
+				{% endifequal %}
+			{% include "events/one_event_newsletter.html" %}</tr>
+				{% if forloop.last %}
+				
+				{% endif %}
+		
+			{% endfor %}
+
+			{% for event in events_soon %}
+			<tr>
+            {% ifchanged event.local_start.date %}    
+				<td>{{event.local_start.date|date:"D"  }}</td> 
+            {% else %}
+				<td>&nbsp;</td>
+			{% endifchanged %}
+		    {% include "events/one_event_newsletter.html" %}
+			
+			</tr>
+			{% endfor %}	
+			
+			</table>
+	</div>
+<div>Thank you so much for reading!</div>
+	
+
+</div>
+

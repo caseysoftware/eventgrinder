@@ -1,0 +1,5 @@
+Someone (hopefully you) requested access to manage your subscription.
+
+If you want to edit your subscription options or just unsubscribe, please click the link below.
+
+{{manage_url}}

@@ -1,0 +1,63 @@
+{% load event_tags %}
+{% load humanize %}
+   <div class="vevent hentry">
+	<h3 class="summary entry-title">{{ event|eventlink|safe }}</h3>
+	
+		
+	<div class="details entry-content">	
+	{% if event.allday %}
+	<abbr class="dtstart" title="{{event.start.isoformat}}Z">All Day</abbr>
+	{% else %}
+	<abbr class="dtstart" title="{{event.start.isoformat}}Z">{{event.local_start|time:"P"}}</abbr> 
+	
+	{% endif %}
+	{% if event.multiday %}
+	{% if event.allday %}
+	/ through <abbr class="dtend" title="{{event.end.isoformat}}Z">{{event.local_end|naturalday}}</abbr>
+	{% else %}
+	/ through {{event.local_end|naturalday}}
+	
+	{% endif %}
+	{% endif %}
+	
+	
+	{% if event.location %}
+	/ <span class="location">{{event.location}}</span>
+	{% endif %}
+	{% if event.cost %}
+	/ {{ event.cost}}
+	{% endif %} 
+
+	<br/>
+	{% if event.link %}
+	
+	{% else %}
+	{% if event.description %}
+    <em> {{ event.description }}</em>
+    {% endif %} 
+    {% endif %}
+	{% if event.source %}
+
+		{% if event.credit_link %}
+    		<div>via <a href="{{event.credit_link}}">{{ event.credit_name }}</a></div>
+		{% else %}
+			<div>via <a href="/sources/">{{ event.credit_name }}</a></div>
+		{% endif %}
+	{% else %}
+		{% if event.credit_name %}
+			{% ifnotequal event.credit_name "Staff" %}
+			{% if event.credit_link %}
+	    		<div>thanks, <a href="{{event.credit_link}}">{{ event.credit_name }}</a>!</div>
+			{% else %}
+				<div>thanks, {{ event.credit_name }}!</div>
+			{% endif %}
+			{% endifnotequal %}
+		
+		{% endif %}
+    
+	{% endif %}
+
+
+ </div>
+</div>
+

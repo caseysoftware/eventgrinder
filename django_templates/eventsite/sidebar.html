@@ -1,0 +1,50 @@
+
+	<div>
+{% if site.bsa_code %}
+
+{{ site.bsa_code|safe }}
+
+{% else %}
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-8225997618118622";
+/* Bigger Better */
+google_ad_slot = "4188848263";
+google_ad_width = 250;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+{% endif %}
+</div>
+
+	<div>
+	
+			
+		<h2>Subscribe to {{site.name}}</h2>
+		<form method="post" action="/subscriptions/new/">
+		<input id="id_email" type="text" name="email" maxlength="255" placeholder="you@whatever.com">
+		<input type="Submit" value="Subscribe"/>
+		</form>
+	
+	</div>
+	<div id="ical">Or, get the: <a href="webcal://{{site.host}}/ical">iCal</a></div>
+
+
+
+
+	{% if links %}
+	<div>
+	
+	<h2>Community Links</h2>
+	<ul id="links">
+	{% for link in links %}
+	<li><a href="{{link.href}}">{{link.name}}</li>
+	{% endfor %}
+	(<a href="/links/add" id="addlink">Submit a link</a>)
+	</div>
+	{% endif %}
+	
+</div>
+

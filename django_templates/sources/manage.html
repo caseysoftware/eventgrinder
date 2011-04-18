@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load cdn_helper %}
+
+
+{% block content %}
+<div class="row">
+	<div class="cell position-0 width-16">
+<h2>manage iCalendar sources</h2>
+<p>Or, <a href="{% url add-source %}">add one</a></p>
+
+
+	</div>
+</div>
+
+<div class="row">
+	<div class="cell position-0 width-8">
+		
+		{% for ical in submitted_icals %}
+		{% ifequal forloop.counter 1 %}
+		<h3>Submitted Calendars</h3>
+		<ul>
+		{% endifequal %}
+		
+		<li>{% include "sources/icalendar_manage_listing.html" %}</li>
+		
+		{% if forloop.last  %}
+		</ul>
+		{% endif %}
+		{% endfor %}
+		
+			
+			{% for ical in live_icals %}
+			{% ifequal forloop.counter 1 %}
+			<h3>Importing Calendars</h3>
+			<ul>
+			{% endifequal %}
+
+			<li>{% include "sources/icalendar_manage_listing.html" %}</li>
+
+			{% if forloop.last  %}
+			</ul>
+			{% endif %}
+			{% endfor %}
+		
+		
+	</div>
+	<div class="cell position-8 width-8">
+		<div class="formcopy">
+
+		</div>
+	</div>
+
+</div>
+
+<div class="row controls">
+	
+</div>
+{% endblock %}

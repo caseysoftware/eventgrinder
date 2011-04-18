@@ -1,0 +1,8 @@
+mapreduce:
+- name: 'migrate.process'
+  mapper:
+    input_reader: mapreduce.input_readers.DatastoreInputReader
+    handler: migrate.process
+    params:
+    - name: entity_kind
+      default: events.models.Event

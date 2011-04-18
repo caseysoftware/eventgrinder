@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load cdn_helper %}
+
+{% block subtitle %}Sources{% endblock %}
+
+{% block content %}
+
+<div class="row">
+	<div class="cell position-0 width-12">
+<h2>event sources</h2>
+{% if user.is_editor %}
+<a href="{% url manage-sources %}">manage sources</a>
+{% endif %}
+<p> Many of the events on {{request.site.name}} come from these calendars. Thank you! You can also <a href="{% url add-source %}">suggest one</a>.</p>
+
+{% for calendar in live_icals %}
+
+{% ifequal forloop.counter 0 %}
+<ul>
+{% endifequal %}
+
+<li>
+{% if calendar.source_link %}
+<a href="{{ calendar.source_link }}">{{calendar.name}}</a>
+{% else %}
+{{calendar.name}}
+{% endif %}	
+(<a href="{{calendar.ical_href}}">ical</a>)
+</li>
+
+{% ifequal forloop.counter 0 %}
+</ul>
+
+{% endifequal %}
+{% empty %}
+
+No sources yet!
+
+{% endfor %}
+ <br/>
+<p>export sources as <a href="opml"><img src="{% versioned "/static/opml-icon-16x16.png" %}" alt="OPML"/> OPML</a> or
+<a href="json">JSON</a>
+</p>
+</div>
+
+<div class="cell position-12 width-4">
+		{% include "eventsite/sidebar.html" %}
+	</div>
+
+
+{% endblock content %}

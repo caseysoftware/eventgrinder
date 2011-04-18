@@ -1,0 +1,83 @@
+{% extends "base-cacheable.html" %}
+{% load cdn_helper %}
+{% load event_tags %}
+{% load utility %}
+{% load cache %}
+
+{% load humanize %}
+
+{% block headextra %}
+
+{% if site.google_site_verification %}
+<meta name="google-site-verification" content="{{site.google_site_verification}}" />
+{% endif %}
+
+
+{% endblock %}
+
+{% block subtitle %}Front Page{% endblock %}
+
+
+{% block content %}
+<div id="positioner">
+		
+	<div class="row">
+		<div class="cell position-0 width-10" id="events">
+			
+		
+			<div id="thisweek">
+			<!-- AddThis Button BEGIN -->
+			<script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+			<div class="addthis_toolbox addthis_default_style">
+			<a href="http://addthis.com/bookmark.php?v=250&amp;username=rosskarchner" class="addthis_button_compact">Share</a>
+			<span class="addthis_separator">|</span>
+			<a class="addthis_button_facebook"></a>
+			<a class="addthis_button_twitter"></a>
+			</div>
+			<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=rosskarchner"></script>
+			<!-- AddThis Button END -->
+			
+			{% for event in upcoming %}
+
+			{% ifchanged event.local_start.date %}<h2>{{event.local_start.date|naturalday:"D n/j"  }}</h2> {% endifchanged %}
+			{% include "events/one_event.html" %}
+
+			{% endfor %}
+
+
+			</div>
+
+
+		
+		</div>
+
+		<div class="cell position-10 width-6" id="sidebar">
+			
+			{% include "eventsite/sidebar.html" %}
+		
+	</div>
+	
+	<div class="row">
+		
+		<div class="cell position-0 width-16" id="pagination">
+
+			<form method="POST" action="/jumpto/" class="jumptoform" novalidate>
+				<label>Select a day: </label><input type="date" name="jumptodate" value="" placeholder="{{site.today|date:'n/j/Y'}}" class="datepicker"/>
+					<input type="submit" value="Go!">
+				</form>
+
+
+		</div>
+	
+	</div>
+	
+
+</div>
+{% endblock %}
+
+
+{% block endcode %}
+
+
+{% endblock %}
+
