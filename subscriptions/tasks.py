@@ -114,7 +114,7 @@ def start_schedule_newsletters(request):
     try:
         for ns in namespace_registry.all():
             set_namespace(ns.ns)
-            for site in Eventsite.all():
+            for site in Eventsite.all().filter('offline =', False):
                 taskqueue.add(url='/subscriptions/schedule_next_newsletter/',
                        params={'site': str(site.key())}
                       )

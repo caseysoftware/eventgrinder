@@ -1,4 +1,4 @@
-import os
+import os, sys
 from eventsite.models import Eventsite
 from google.appengine.api.namespace_manager import set_namespace, get_namespace
 from django.http import HttpResponse, HttpResponseRedirect
@@ -20,30 +20,17 @@ def get_site(key_name=None):
     
     
     
-def site_required(func, bypass_offline_check=False):
-    def no_site(request, *args, **kwargs):
-        return HttpResponse("No calendar with that name exists (yet!)")
-
-    def replacement_view(request, *args, **kwargs):
-        request.site=get_site()
-        if request.site and not (request.site.offline and bypass_offline_check):
-            return func(request, *args, **kwargs)
-        else:
-            return no_site(request, *args, **kwargs)
-
-    return replacement_view
-    
-    
 def site_required(func):
     def no_site(request, *args, **kwargs):
         return HttpResponse("No calendar with that name exists (yet!)")
 
     def replacement_view(request, *args, **kwargs):
         request.site=get_site()
-        if request.site:
+        if (request.site and not (request.site.offline)) or '/admin' in os.environ['PATH_INFO']or '/_ah' in os.environ['PATH_INFO']  :
             return func(request, *args, **kwargs)
         else:
             return no_site(request, *args, **kwargs)
 
     return replacement_view
+
     
