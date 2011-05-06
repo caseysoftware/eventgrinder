@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^$','eventsite.views.front_page', name="front-page"),
     url(r'^jumpto/$','eventsite.views.jumpto', name="jumpto"),
     url(r'^ical/$','eventsite.views.ical', name="ical"),
+    url(r'^events.json$','eventsite.views.make_json', name="json"),
     url(r'^week-of/(?P<datestring>[\x20-\x7E]+)/(?P<format>[\x20-\x7E]+)$','eventsite.views.week_of_index', name="week-of-with-format"),
     url(r'^week-of/(?P<datestring>[\x20-\x7E]+)$','eventsite.views.week_of_index', name="week-of"),
 )

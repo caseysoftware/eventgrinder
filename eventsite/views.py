@@ -14,6 +14,8 @@ from dateutil.parser import parse
 import vobject, os
 from events.models import Event
 
+import simplejson as json
+
 
 from itertools import chain
 
@@ -69,7 +71,29 @@ def ical(request, tag=None):
     response['Cache-Control']="public; max-age=3600;"
     return response
     
-
+@cache_page(60 * 60)
+@site_required
+def make_json(request, start=None):
+    if not start:
+        start=utc.localize(datetime.utcnow()).astimezone(request.site.tz).date()
+    continuing=Event.all().filter('status = ', 'approved').filter('multiday =', True).filter('continues =', str(start))
+    events_soon=Event.all().filter('status = ', 'approved').order('local_start').filter('local_start >= ', start)
+    
+    flattened_events=[]
+    for event in chain(continuing,events_soon):
+        flattened_events.append({'title': event.title,
+                    'start':event.start.isoformat(),
+                    'end': event.end.isoformat(),
+                    'location':event.location,
+                    'link':event.link,
+                    'cost':event.cost,
+                    'credit_name':event.credit_name,
+                    'credit_link':event.credit_link,})
+                    
+    response= HttpResponse(json.dumps(flattened_events), mimetype='application/json')
+    response['Cache-Control']="public; max-age=3600;"
+    return response
+        
 
 def jumpto(request):
     datestring=request.POST.get('jumptodate')

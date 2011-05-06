@@ -14,7 +14,7 @@ def get_site(key_name=None):
 	if site: return site
 	site=Eventsite.all().get()
 	site_cache[key_name]=site
-	register(os.environ.get('HTTP_HOST'))
+	#register(os.environ.get('HTTP_HOST'))
 	return site
     
     
