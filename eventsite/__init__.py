@@ -22,7 +22,10 @@ def get_site(key_name=None):
     
 def site_required(func):
     def no_site(request, *args, **kwargs):
-        return HttpResponse("No calendar with that name exists (yet!)")
+    	if not request.site:
+        	return HttpResponse("No calendar with that name exists (yet!)")
+    	else:
+        	return HttpResponse("%s will return soon!" % request.site.name)
 
     def replacement_view(request, *args, **kwargs):
         request.site=get_site()
