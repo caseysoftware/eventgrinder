@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load cdn_helper %}
+{% load humanize %}
+{% load utility %}
+
+{% block headextra %}
+{% ifequal user.userlevel 10 %}
+	<script src="{% versioned "/static/editing.js" %}"></script>
+{% endifequal %}
+{% endblock %}
+{% block subtitle %}Week of {{ start|date:"F j, Y"}}{% endblock %}
+
+
+{% block opengraph %}
+<meta name="title" content="{{ site.name }} for the week of {{ start|date:"F j, Y"}}" />
+<meta name="description" content="{{site.name}} is a calendar for {{site.audience}} " />
+<meta property="og:type" content="article" />
+{% endblock opengraph %}
+
+
+{% block content %}
+<div id="positioner">
+	
+	
+	<div class="row">
+		<div class="cell position-0 width-12" id="events">
+			<h1> upcoming events for the week of <em>{{ start|date:"F j, Y"}}</em></h1>
+				<div>
+					<!-- AddThis Button BEGIN -->
+					<script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+					<div class="addthis_toolbox addthis_default_style">
+					<a href="http://addthis.com/bookmark.php?v=250&amp;username=rosskarchner" class="addthis_button_compact">Share</a>
+					<span class="addthis_separator">|</span>
+					<a class="addthis_button_facebook"></a>
+					<a class="addthis_button_twitter"></a>
+					</div>
+					<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=rosskarchner"></script>
+					<!-- AddThis Button END -->
+				
+				</div>
+			{% for event in continuing %}
+			 
+				{% ifequal forloop.counter 1 %}
+				<h2>Continuing</h2>
+				{% endifequal %}
+			{% include "events/one_event.html" %}
+			{% ifequal user.userlevel 10 %}
+			{% include "events/edit_form.html" %}
+			{% endifequal %}
+		
+			{% endfor %}
+
+			{% for event in events_soon %}
+			
+            {% ifchanged event.local_start.date %}    
+				<a name="{{event.local_start.date|date:'Y-m-d' }}">
+				<h2>{{event.local_start.date|naturalday  }}</h2> 
+            
+			{% endifchanged %}
+		    {% include "events/one_event.html" %}
+			{% ifequal user.userlevel 10 %}
+			{% include "events/edit_form.html" %}
+			{% endifequal %}
+		
+			{% endfor %}	
+			
+			
+
+	
+	</div>
+	<div class="cell position-12 width-4" id="sidebar">
+		
+		{% include "eventsite/sidebar.html" %}
+		
+	</div>
+
+	
+
+</div>
+{% endblock %}
+
+{% block endcode %}
+<script type="text/javascript">
+var disqus_shortname = '{{site.disqus_shortname}}';
+(function () {
+  var s = document.createElement('script'); s.async = true;
+  s.src = 'http://disqus.com/forums/{{site.disqus_shortname}}/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+{% endblock %}
+

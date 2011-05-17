@@ -129,6 +129,21 @@ def week_of_index(request, datestring=None, format=None):
     return render_to_response(template, locals(), context_instance=RequestContext(request))
         
 
+@site_required
+def this_week_rss(request):
+
+    parsed_day=request.site.today
+    start=parsed_day+relativedelta(weekday=MO(-1))
+    begin_next_week=start+relativedelta(days=1, weekday=MO(+1))
+    end=start+relativedelta(weekday=SU)
+    continuing=Event.all().filter('status = ', 'approved').filter('continues =', str(start)).filter('local_start < ', start).fetch(150)
+    events_soon=Event.all().filter('status = ', 'approved').order('local_start').filter('local_start >= ', start).filter('local_start < ', begin_next_week).fetch(150)
+    
+
+    template='eventsite/week.xml'
+
+    return render_to_response(template, locals(), context_instance=RequestContext(request))
+        
 
 
 
