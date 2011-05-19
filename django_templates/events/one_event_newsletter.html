@@ -5,22 +5,19 @@
 
 
 
-<td>{% if event.allday %}
-"All Day"
+{% if event.allday %}
+All Day: 
 	{% else %}
 {{event.local_start|time:"P"}}
 
-	{% endif %}</td> <td> <strong class="summary entry-title"> {{ event|eventlink|safe }}</strong> 
+	{% endif %}{{ event|eventlink|safe }}
 	
 	{% if event.multiday %}
 	{% if event.allday %}
-(continuing through <abbr class="dtend" title="{{event.end.isoformat}}Z">{{event.local_end|naturalday}}</abbr>)
+(continuing through {{event.local_end|naturalday}})
 	{% else %}
 	(through {{event.local_end|naturalday}})
 	
 	{% endif %}
 	{% endif %}
-</td>
-
-
-
+<br/>

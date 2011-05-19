@@ -128,7 +128,7 @@ def week_of_index(request, datestring=None, format=None):
 
     return render_to_response(template, locals(), context_instance=RequestContext(request))
         
-
+@cache_page(60 * 10)
 @site_required
 def this_week_rss(request):
 
@@ -142,8 +142,9 @@ def this_week_rss(request):
 
     template='eventsite/week.xml'
 
-    return render_to_response(template, locals(), context_instance=RequestContext(request))
-        
+    response= render_to_response(template, locals(), context_instance=RequestContext(request),mimetype='application/rss+xml')
+    response['Cache-Control']="public; max-age=3600;"
+    return response   
 
 
 
