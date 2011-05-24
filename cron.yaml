@@ -1,8 +1,5 @@
 cron:
 - description: start getting icals
   url: /sources/start_fetch_icals/
-  schedule: every 5 minutes
-- description: schedule upcoming newsletters
-  url: /subscriptions/start_schedule_newsletters/
-  schedule: every 12 hours synchronized
+  schedule: every 2 hours
 
