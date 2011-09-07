@@ -25,3 +25,12 @@ If other people are going to hack on this and use it, a real theming system prob
 The current system of navigating between weeks is just dumb.
 
 Recurring events were once supported, but it never worked very well, so I took it out. They should probably come back (done right).
+
+# How is EG different from Calagator or ElmCity?
+
+I'm stuck on the idea of the calendar as an editorial product, that puts the expertise and interest of *a person* (or people, or an organization) at the nexus of many streams of events. A curator.
+
+Calagtor is more like a wiki, and ElmCity does the aggregator thing, but there's no role for the editor beyond selecting which iCal feeds get pulled in.
+
+# Coming Soon
+* Instructions for spinning up an Eventgrinder instance, and starting a calendar.
