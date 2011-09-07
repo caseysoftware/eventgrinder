@@ -33,6 +33,7 @@ I'm stuck on the idea of the calendar as an editorial product, that puts the exp
 Calagtor is more like a wiki, and ElmCity does the aggregator thing, but there's no role for the editor beyond selecting which iCal feeds get pulled in.
 
 # Coming Soon
+* Fold in the improvements I've been working on in a seperate repo, https://github.com/rosskarchner/Share-Events/
 * Instructions for spinning up an Eventgrinder instance, and starting a calendar.
 * Trimming out modules that aren't used anymore.
 * A decision on going all-in or all-out with Django.
