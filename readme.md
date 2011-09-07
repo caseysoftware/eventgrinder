@@ -1,4 +1,4 @@
-#What is this craxy thing?
+#What is this crazy thing?
 
 This is the current, production version of "Eventgrinder"-- which runs some calendar aggregator sites, like dctechevents.com
 
