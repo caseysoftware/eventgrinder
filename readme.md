@@ -34,3 +34,5 @@ Calagtor is more like a wiki, and ElmCity does the aggregator thing, but there's
 
 # Coming Soon
 * Instructions for spinning up an Eventgrinder instance, and starting a calendar.
+* Trimming out modules that aren't used anymore.
+* A decision on going all-in or all-out with Django.
