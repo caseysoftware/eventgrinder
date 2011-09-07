@@ -31,3 +31,6 @@ handlers:
 
 - url: .*
   script: django_app.py
+  
+builtins:
+- datastore_admin: on
