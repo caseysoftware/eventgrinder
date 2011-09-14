@@ -20,7 +20,7 @@ utc=pytz.timezone('UTC')
 from datetime import datetime
 
 from sources.models import ICalendarSource
-from apps.links.models import Link
+from links.models import Link
 
 
 @profile_required

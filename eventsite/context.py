@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from google.appengine.api import users
 from google.appengine.api.images import get_serving_url
 
-from apps.links.models import Link
+from links.models import Link
 
 
 

@@ -1,5 +1,5 @@
 application: techevents
-version: newhomepage
+version: cleanup
 runtime: python
 api_version: 1
 
@@ -12,10 +12,6 @@ handlers:
   expiration: "24d"
   
 - url: /tasks.*
-  script: main.py
-  login: admin
-
-- url: /links/review
   script: main.py
   login: admin
 
