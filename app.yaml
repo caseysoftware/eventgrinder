@@ -11,9 +11,6 @@ handlers:
   upload: static/(.*)
   expiration: "24d"
   
-- url: /calendars.*
-  script: main.py
-
 - url: /tasks.*
   script: main.py
   login: admin
@@ -22,15 +19,8 @@ handlers:
   script: main.py
   login: admin
 
-- url: /links.*
-  script: main.py
-  
-- url: /mapreduce(/.*)?
-  script: mapreduce_wrapper.py
-  login: admin
-
 - url: .*
-  script: django_app.py
+  script: main.py
   
 builtins:
 - datastore_admin: on

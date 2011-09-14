@@ -1,38 +1,47 @@
-# -*- coding: utf-8 -*-
-"""
-    main
-    ~~~~
+import sys, os
+from google.appengine.ext.webapp import util
 
-    Run Tipfy apps.
 
-    :copyright: 2009 by tipfy.org.
-    :license: BSD, see LICENSE for more details.
-"""
+sys.path= [os.path.join(os.path.dirname(__file__), 'shared'), os.path.join(os.path.dirname(__file__), '.')]+sys.path
+
+
+# Django imports and other code go here...
 import os
-import sys
+os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+from google.appengine.dist import use_library
+use_library('django', '1.2')
 
-if 'lib' not in sys.path:
-    # Add /lib as primary libraries directory, with fallback to /distlib
-    # and optionally to distlib loaded using zipimport.
-    sys.path[0:0] = ['lib', 'distlib', 'distlib.zip', 'shared']
-    
 
-import config
-import tipfy
+import django.core.handlers, django.core.handlers.wsgi
 
-# Is this the development server?
-debug = os.environ.get('SERVER_SOFTWARE', '').startswith('Dev')
+from django.conf import settings
+settings.ROOT_URLCONF="urls"
 
-# Instantiate the application.
-app = tipfy.make_wsgi_app(config=config.config, debug=debug)
-from tipfy.ext.jinja2 import get_jinja2_instance
-env=get_jinja2_instance()
-env.globals['app_version'] = os.environ['CURRENT_VERSION_ID'] or 'dev'
+
+
+import logging
+import django.core.signals
+import django.dispatch.dispatcher
+import django.db
+
+def log_exception(*args, **kwds):
+    logging.exception('Exception in request:')
+
+# Log errors.
+django.dispatch.Signal.connect(
+    django.core.signals.got_request_exception, log_exception)
+
+# Unregister the rollback event handler.
+django.dispatch.Signal.disconnect(
+    django.core.signals.got_request_exception,
+    django.db._rollback_on_exception)
+
+
 
 def main():
-
-	app.run()
-
+    sys.path= [os.path.join(os.path.dirname(__file__), 'shared'), os.path.join(os.path.dirname(__file__), '.')]+sys.path
+    application = django.core.handlers.wsgi.WSGIHandler()
+    util.run_wsgi_app(application)
 
 if __name__ == '__main__':
     main()

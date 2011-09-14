@@ -1,3 +1,0 @@
-- description: schedule upcoming newsletters
-  url: /subscriptions/start_schedule_newsletters/
-  schedule: every 12 hours synchronized
